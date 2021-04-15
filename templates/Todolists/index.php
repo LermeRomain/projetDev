@@ -30,7 +30,7 @@
                     <td><?= h($todolist->title) ?></td>
                     <td><?= h($todolist->picture) ?></td>
                     <td><?= h($todolist->visibility) ?></td>
-                    <td><?= $todolist->has('user') ? $this->Html->link($todolist->user->id, ['controller' => 'Users', 'action' => 'view', $todolist->user->id]) : '' ?></td>
+                    <td><?= $todolist->has('user') ? $this->Html->link($todolist->user->username, ['controller' => 'Users', 'action' => 'view', $todolist->user->id]) : '' ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $todolist->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $todolist->id]) ?>
