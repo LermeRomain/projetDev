@@ -9,8 +9,14 @@ namespace App\Controller;
  * @property \App\Model\Table\UsersTable $Users
  * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
+
 class UsersController extends AppController
 {
+    public function beforeFilter(\Cake\Event\EventInterface $event) {
+        parent::beforeFilter($event);
+        //autorise l'action login et add de ce controller seulement
+        $this->Authentication->addUnauthenticatedActions(['login', 'add', 'index']);
+    }
     /**
      * Index method
      *
@@ -57,6 +63,19 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         $this->set(compact('user'));
+    }
+    public function login(){
+        if($this->request->is(['post'])){
+
+            $res = $this->Authentication->getResult();
+
+            if($res->isValid()){
+                $this->Flash->success('Welcome back');
+                return $this->redirect(['controller' => 'Users', 'action' => 'index']);
+            }else{
+                $this->Flash->error('Identifiants incorrects');
+            }
+        }
     }
 
     /**

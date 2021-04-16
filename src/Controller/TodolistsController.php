@@ -18,10 +18,7 @@ class TodolistsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Users'],
-        ];
-        $todolists = $this->paginate($this->Todolists);
+        $todolists = $this->Todolists->find('all', ['contain' => ['Users', 'Items']]);
 
         $this->set(compact('todolists'));
     }
