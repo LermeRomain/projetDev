@@ -48,7 +48,10 @@ class TodolistsController extends AppController
     {
         $todolist = $this->Todolists->newEmptyEntity();
         if ($this->request->is('post')) {
-            $todolist = $this->Todolists->patchEntity($todolist, $this->request->getData());
+            $todolist->title = $this->request->getData("title");
+            $todolist->picture = $this->request->getData("picture");
+            $todolist->visibility = $this->request->getData("visibility");
+            $todolist->user_id = $this->request->getData("user_id");
             if ($this->Todolists->save($todolist)) {
                 $this->Flash->success(__('The todolist has been saved.'));
 

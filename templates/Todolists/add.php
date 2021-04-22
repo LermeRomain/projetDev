@@ -13,12 +13,12 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="todolists form content">
-            <?= $this->Form->create($todolist) ?>
+            <?= $this->Form->create($todolist),['enctype' => 'multipart/form-data'] ?>
             <fieldset>
                 <legend><?= __('Add Todolist') ?></legend>
                 <?php
                     echo $this->Form->control('title');
-                    echo $this->Form->control('picture');
+                    echo $this->Form->control('picture', ['label' => 'Insérez une image', 'type' => 'file']);
                     echo $this->Form->control('visibility');
                     echo $this->Form->control('user_id', ['options' => $users]);
                 ?>
