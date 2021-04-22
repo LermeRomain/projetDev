@@ -11,13 +11,12 @@
         <table>
             <thead>
                 <tr>
-                    <th>id</th>
-                    <th>created</th>
-                    <th>modified</th>
-                    <th>title</th>
+
+                    <th>crée</th>
+                    <th>modifié</th>
+                    <th>Titre</th>
                     <th>picture</th>
-                    <th>visibility</th>
-                    <th>user_id</th>
+                    <th>Utilisateur</th>
                     <th class="actions">Actions</th>
                 </tr>
             </thead>
@@ -25,12 +24,10 @@
                 <?php foreach ($todolists as $todolist):?>
                     <?php if($todolist->visibility != 0) : ?>
                 <tr>
-                    <td><?= $this->Number->format($todolist->id) ?></td>
                     <td><?= h($todolist->created) ?></td>
                     <td><?= h($todolist->modified) ?></td>
                     <td><?= h($todolist->title) ?></td>
                     <td><?= h($todolist->picture) ?></td>
-                    <td><?= h($todolist->visibility) ?></td>
                     <td><?= $todolist->has('user') ? $this->Html->link($todolist->user->username, ['controller' => 'Users', 'action' => 'view', $todolist->user->id]) : '' ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $todolist->id]) ?>
